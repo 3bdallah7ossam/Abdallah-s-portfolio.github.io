@@ -196,65 +196,58 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
 
 
 /* Services */
-.services{background:var(--bg)}
-
-.services-intro{
-  margin-top:.8rem;
-  color:var(--muted);
-  line-height:1.9;
-  max-width:900px;
-  margin-inline:auto;
+.services{
+  background:var(--bg);
 }
 
 .services-grid{
   margin-top:2rem;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:1rem;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1.2rem;
 }
 
-/* ✅ ضيف ده هنا */
-.service-icon{
-  width:56px;
-  height:56px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:14px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-}
-
-.service-icon img{
-  width:32px;
-  height:32px;
-  object-fit:contain;
-}
-
-/* ⬇️ الكود الأصلي بتاعك */
+/* الكارت */
 .service-card{
-  background:linear-gradient(180deg, rgba(16,31,57,.92), rgba(15,27,47,.92));
-  border:1px solid rgba(255,255,255,.06);
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+/* الصورة */
+.service-img{
+  width:100%;
+  max-width:260px;
+  height:160px;
+  object-fit:cover;
+  border-radius:14px;
   box-shadow:var(--shadow);
-  border-radius:var(--radius);
-  padding:18px 16px;
-  transition:transform .25s ease,border-color .25s ease;
 }
 
-.service-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(57,198,255,.25);
+/* العنوان تحت الصورة */
+.service-title{
+  margin-top:.6rem;
+  background:#3a2a1f;
+  color:#fff;
+  padding:8px 14px;
+  border-radius:10px;
+  font-size:.85rem;
+  line-height:1.4;
 }
 
-.service-card h3{
-  color:var(--text);
-  margin-bottom:10px;
+/* 📱 موبايل */
+@media (max-width: 900px){
+  .services-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-.service-card p{
-  color:var(--muted);
-  line-height:1.7;
+@media (max-width: 600px){
+  .services-grid{
+    grid-template-columns:1fr;
+  }
 }
 
 /* Portfolio (keep your structure but cleaner) */
