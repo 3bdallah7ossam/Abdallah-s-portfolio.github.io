@@ -196,34 +196,43 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
 
 
 /* Services */
-.service-icon{
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.06);
-}
-
-.service-icon img{
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-}
-
 .services{background:var(--bg)}
+
 .services-intro{
-  margin-top:.8rem;color:var(--muted);line-height:1.9;
-  max-width:900px;margin-inline:auto;
+  margin-top:.8rem;
+  color:var(--muted);
+  line-height:1.9;
+  max-width:900px;
+  margin-inline:auto;
 }
+
 .services-grid{
-  margin-top:2rem;display:grid;
+  margin-top:2rem;
+  display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:1rem;
 }
+
+/* ✅ ضيف ده هنا */
+.service-icon{
+  width:56px;
+  height:56px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.service-icon img{
+  width:32px;
+  height:32px;
+  object-fit:contain;
+}
+
+/* ⬇️ الكود الأصلي بتاعك */
 .service-card{
   background:linear-gradient(180deg, rgba(16,31,57,.92), rgba(15,27,47,.92));
   border:1px solid rgba(255,255,255,.06);
@@ -232,9 +241,21 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
   padding:18px 16px;
   transition:transform .25s ease,border-color .25s ease;
 }
-.service-card:hover{transform:translateY(-6px);border-color:rgba(57,198,255,.25)}
-.service-card h3{color:var(--text);margin-bottom:10px}
-.service-card p{color:var(--muted);line-height:1.7}
+
+.service-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(57,198,255,.25);
+}
+
+.service-card h3{
+  color:var(--text);
+  margin-bottom:10px;
+}
+
+.service-card p{
+  color:var(--muted);
+  line-height:1.7;
+}
 
 /* Portfolio (keep your structure but cleaner) */
 /* Portfolio image styling (clean + consistent) */
