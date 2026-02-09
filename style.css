@@ -313,4 +313,27 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
   }
   .navlist.open{top:68px}
   .portfolio-gallery{grid-template-columns:1fr}
+  @media (max-width:768px){
+  #menu-icon{display:block}
+  .navlist{
+    display:flex;position:absolute;top:-1000px;right:0;left:0;
+    flex-direction:column;background:rgba(11,18,32,.95);
+    padding:14px 5%;transition:.35s;border-bottom:1px solid rgba(255,255,255,.06)
+  }
+  .navlist.open{top:68px}
+  .portfolio-gallery{grid-template-columns:1fr}
+  .img-box{
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-top: 40px;
+  }
+
+  .img-box img{
+    width:220px;
+    height:220px;
+  }
+}
+
 }
