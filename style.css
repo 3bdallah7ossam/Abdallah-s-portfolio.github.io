@@ -196,6 +196,24 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
 
 
 /* Services */
+.service-icon{
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+.service-icon img{
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
 .services{background:var(--bg)}
 .services-intro{
   margin-top:.8rem;color:var(--muted);line-height:1.9;
