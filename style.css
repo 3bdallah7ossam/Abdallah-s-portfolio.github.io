@@ -291,12 +291,12 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
 .portfolio-gallery{
   margin-top: 1.6rem;
   display: grid;
-  grid-template-columns: 1fr;   /* عمود واحد */
-  gap: 2rem;
-  max-width: 500px;            /* ← ده نص تقريبًا */
-  margin: 0 auto;              /* توسيط */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+  gap: 1.2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 
 
 
