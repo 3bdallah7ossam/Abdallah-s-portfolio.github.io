@@ -267,21 +267,19 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
 /* Portfolio image styling (clean + consistent) */
 .port-imag{
   width: 100%;
-  padding: 16px;
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #0f1b2f;
+  border-radius: 18px;
 }
 
 .port-imag img{
+  max-width: 550px;   /* يتحكم في الحجم */
   width: 100%;
-  max-width: 100%;
-  height: auto;          
-  object-fit: contain;   
-  display: block;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+  height: auto;
+  object-fit: contain;
 }
 
 
