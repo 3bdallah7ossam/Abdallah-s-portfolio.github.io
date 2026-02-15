@@ -451,9 +451,9 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
 }
 .port-imag{
   width: 100%;
-  max-width: 750px;      
+  max-width: 450px;      
   margin: 0 auto;
-  height: 420px;        
+  height: 220px;        
   display: flex;
   align-items: center;
   justify-content: center;
