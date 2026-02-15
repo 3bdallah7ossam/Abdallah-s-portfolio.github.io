@@ -293,9 +293,10 @@ header.Sticky{padding:14px 10%;background:rgba(11,18,32,.9)}
   display: grid;
   grid-template-columns: 1fr;   /* عمود واحد */
   gap: 2rem;
-  max-width: 1000px;           /* نفس حجم الصورة اللي بعتها */
+  max-width: 500px;            /* ← ده نص تقريبًا */
   margin: 0 auto;              /* توسيط */
 }
+
 
 
 
