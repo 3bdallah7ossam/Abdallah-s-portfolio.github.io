@@ -72,3 +72,30 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(".scroll-scale").forEach((el) => observer.observe(el));
 document.querySelectorAll(".scroll-bottom").forEach((el) => observer.observe(el));
+
+// Portfolio Image Slider Logic
+const sliders = {};
+
+function moveSlide(direction, sliderId) {
+  // Initialize slider state if it doesn't exist yet
+  if (sliders[sliderId] === undefined) {
+    sliders[sliderId] = 0;
+  }
+  
+  const wrapper = document.getElementById(sliderId);
+  const totalSlides = wrapper.children.length;
+  
+  // Calculate new slide index
+  sliders[sliderId] += direction;
+  
+  // Loop back to start or end
+  if (sliders[sliderId] >= totalSlides) {
+    sliders[sliderId] = 0;
+  } else if (sliders[sliderId] < 0) {
+    sliders[sliderId] = totalSlides - 1;
+  }
+  
+  // Apply CSS transform to slide images
+  const percentage = -(sliders[sliderId] * 100);
+  wrapper.style.transform = `translateX(${percentage}%)`;
+}
