@@ -1,65 +1,156 @@
-/* --- Portfolio (Horizontal Premium Layout) --- */
-.portfolio{ background:var(--panel2); }
+/* --- Portfolio (Professional Feature-Split Layout) --- */
+.portfolio {
+  background: var(--panel2);
+}
 
-.portfolio-gallery{
-  margin-top: 2.5rem;
+.portfolio-container {
   display: flex;
-  flex-direction: column; /* جعل المشاريع تحت بعضها */
-  gap: 2.5rem; /* مسافة ممتازة بين كل مشروع والثاني */
-  max-width: 1000px; /* تصغير العرض الكلي ليكون متناسق مع التصميم الأفقي */
-  margin-left: auto;
-  margin-right: auto;
+  flex-direction: column;
+  gap: 120px; /* مسافة كبيرة جداً وراقية بين كل مشروع والآخر */
+  margin-top: 50px;
 }
 
-.port-box{
+.project-row {
   display: flex;
-  flex-direction: row; /* تخطيط أفقي: الصورة بجانب النص */
-  align-items: stretch;
-  background:linear-gradient(180deg, rgba(16,31,57,.95), rgba(15,27,47,.95));
-  border:1px solid rgba(255,255,255,.06);
-  box-shadow:var(--shadow);
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
 }
 
-.port-box:hover{
-  transform: translateY(-5px);
-  border-color: rgba(57,198,255,.25);
+/* عكس الاتجاه في المشاريع الزوجية لشكل أكثر احترافية */
+.project-row.reverse {
+  flex-direction: row-reverse;
 }
 
-.port-imag{
-  flex: 0 0 40%; /* الصورة تأخذ 40% من عرض البطاقة */
-  max-width: 380px; /* تحديد أقصى عرض للصورة حتى لا تكبر */
-  padding: 25px;
+/* -- Project Text Section -- */
+.project-info {
+  flex: 1;
+  max-width: 550px;
+}
+
+.project-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.project-desc {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+/* المربعات التي تشبه الصورة الثانية (Questions/Solutions) */
+.project-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.metric-box {
+  background: rgba(15, 27, 47, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 16px;
+  transition: 0.3s;
+}
+
+.metric-box:hover {
+  background: rgba(57, 198, 255, 0.05);
+  border-color: rgba(57, 198, 255, 0.2);
+}
+
+.m-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.m-head i {
+  color: #ff9800; /* لون برتقالي مميز للأيقونة كما في التصميم */
+  font-size: 1.3rem;
+}
+
+.m-head span {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.metric-box h4 {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.metric-box p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* زر عرض المشروع */
+.view-project-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.view-project-btn:hover {
+  background: var(--accent);
+  color: #0b1220;
+  transform: translateX(5px);
+}
+
+/* -- Project Image Section -- */
+.project-visual {
+  flex: 1.2;
+  background: linear-gradient(145deg, #101f39, #0f1b2f);
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(11, 18, 32, 0.4); /* خلفية داكنة قليلاً تميز مكان الصورة */
-  border-right: 1px solid rgba(255,255,255,.05);
+  position: relative;
+  overflow: hidden;
 }
 
-.port-imag img{
+.project-visual img {
   width: 100%;
   height: auto;
-  object-fit: contain;
-  transition: .3s;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.port-box:hover .port-imag img{
-  transform: scale(1.05);
+.project-visual:hover img {
+  transform: scale(1.02);
 }
 
-/* --- Project Slider Styles (Horizontal Match) --- */
+/* Project Slider (Supply Chain) */
 .port-slider {
   position: relative;
-  flex: 0 0 40%;
-  max-width: 380px;
-  background: rgba(11, 18, 32, 0.4);
+  width: 100%;
   overflow: hidden;
-  border-right: 1px solid rgba(255,255,255,.05);
-  display: flex;
-  align-items: center;
+  border-radius: 12px;
 }
 
 .slider-wrapper {
@@ -70,11 +161,8 @@
 }
 
 .slider-wrapper img {
-  width: 100%;
   flex: 0 0 100%;
-  padding: 25px; /* نفس مسافات الصورة العادية */
-  object-fit: contain;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 .slide-btn {
@@ -83,16 +171,16 @@
   transform: translateY(-50%);
   background: rgba(11, 18, 32, 0.8);
   color: var(--text);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  width: 32px;
-  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  font-size: 1.5rem;
+  transition: 0.3s;
   z-index: 2;
   backdrop-filter: blur(4px);
 }
@@ -103,127 +191,29 @@
   border-color: var(--accent);
 }
 
-.slide-btn.prev { left: 10px; }
-.slide-btn.next { right: 10px; }
+.slide-btn.prev { left: 15px; }
+.slide-btn.next { right: 15px; }
 
-/* Content next to images */
-.port-content{
-  flex: 1; /* النص يأخذ باقي المساحة (60%) */
-  padding: 35px 40px; /* مسافات داخلية ممتازة لترتيب الكلام */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* توسيط الكلام عمودياً */
-}
-
-.port-content h3{
-  margin: 0 0 12px;
-  color:var(--accent);
-  font-size: 1.4rem;
-  letter-spacing: 0.5px;
-}
-
-.port-content p{
-  margin: 8px 0;
-  color:var(--muted);
-  line-height: 1.8;
-  font-size: 0.95rem;
-}
-
-.port-content p strong {
-  color: #e8eefc; /* تمييز الكلمات مثل Challenge و Tools */
-}
-
-.port-content a{
-  display:inline-flex;
-  margin-top: 20px;
-  align-self: flex-start; /* جعل الزر على اليسار أسفل الكلام */
-  width: 44px;
-  height: 44px;
-  align-items:center;
-  justify-content:center;
-  border-radius:12px;
-  background:rgba(57,198,255,.10);
-  border:1px solid rgba(57,198,255,.20);
-  color:var(--accent);
-  transition: .3s;
-  font-size: 1.2rem;
-}
-
-.port-content a:hover{
-  background:var(--accent);
-  color:#0b1220;
-  transform: translateY(-3px);
-}
-
-/* Contact */
-.contact-links{
-  background:var(--bg);
-  border-top:1px solid rgba(255,255,255,.06);
-  width:100%;
-  display:flex;flex-wrap:wrap;gap:12px;
-  align-items:center;justify-content:center;
-  padding:32px 10%;
-}
-.contact-links h2{width:100%;text-align:center;color:var(--text);margin-bottom:8px}
-.contact-links a{
-  color:var(--text);
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-  padding:10px 14px;border-radius:14px;
-  transition:.25s;
-}
-.contact-links a:hover{border-color:rgba(57,198,255,.25);color:var(--accent);background:rgba(57,198,255,.08)}
-
-.bottom-footer{
-  padding:18px 10%;
-  display:flex;align-items:center;justify-content:space-between;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.bottom-footer p{color:var(--muted)}
-.bottom-footer a{
-  display:inline-flex;justify-content:center;align-items:center;
-  color:#06101f;background:linear-gradient(90deg, rgba(57,198,255,.95), rgba(34,197,94,.85));
-  border-radius:14px;padding:.65rem;box-shadow:var(--shadow)
-}
-
-/* Animations */
-.scroll-scale{opacity:0;transform:scale(.95);transition:all 1.1s}
-.scroll-bottom{opacity:0;transform:translateY(90px);transition:1.1s}
-.show-items{opacity:1;transform:translateX(0)}
-
-@keyframes slideAnimation{
-  0%{opacity:0;transform:translateY(60px)}
-  100%{opacity:1;transform:translateY(0)}
-}
-
-/* Responsive */
-@media (max-width:991px){
-  header,header.Sticky{padding:14px 5%}
-  section{padding:70px 5%}
-  :root{--big-font:2.2rem;--normal-font:1.7rem}
-  .home{grid-template-columns:1fr}
-  .resume-grid{grid-template-columns:1fr}
-}
-@media (max-width:768px){
-  #menu-icon{display:block}
-  .navlist{
-    display:flex;position:absolute;top:-1000px;right:0;left:0;
-    flex-direction:column;background:rgba(11,18,32,.95);
-    padding:14px 5%;transition:.35s;border-bottom:1px solid rgba(255,255,255,.06)
-  }
-  .navlist.open{top:68px}
-  
-  /* جعل المشاريع تظهر بشكل عمودي مجدداً على الموبايل */
-  .port-box {
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .project-row, .project-row.reverse {
     flex-direction: column;
+    gap: 40px;
   }
-  .port-imag, .port-slider {
-    flex: none;
+  .project-info {
     max-width: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(255,255,255,.05);
+    text-align: center;
   }
-  .port-content {
-    padding: 25px 20px;
+  .project-metrics {
+    text-align: left; /* Keep metrics readable */
+  }
+  .m-head {
+    justify-content: center; /* Center badges on mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .project-metrics {
+    grid-template-columns: 1fr; /* Stack metrics on small phones */
   }
 }
