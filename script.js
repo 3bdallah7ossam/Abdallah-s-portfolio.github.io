@@ -1,101 +1,135 @@
-// Animated changing text
-let words = document.querySelectorAll(".word");
-words.forEach((word) => {
-  let letters = word.textContent.split("");
-  word.textContent = "";
-  letters.forEach((letter) => {
-    let span = document.createElement("span");
-    span.textContent = letter;
-    span.className = "letter";
-    word.append(span);
-  });
-});
-
-let currentWordIndex = 0;
-let maxWordIndex = words.length - 1;
-words[currentWordIndex].style.opacity = "1";
-
-let changeText = () => {
-  let currentWord = words[currentWordIndex];
-  let nextWord = currentWordIndex === maxWordIndex ? words[0] : words[currentWordIndex + 1];
-
-  Array.from(currentWord.children).forEach((letter, i) => {
-    setTimeout(() => { letter.className = "letter out"; }, i * 80);
-  });
-
-  nextWord.style.opacity = "1";
-  Array.from(nextWord.children).forEach((letter, i) => {
-    letter.className = "letter behind";
-    setTimeout(() => { letter.className = "letter in"; }, 340 + i * 80);
-  });
-
-  currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
-};
-
-changeText();
-setInterval(changeText, 3000);
-
-// Active menu on scroll
-let menuLi = document.querySelectorAll("header ul li a");
-let sections = document.querySelectorAll("section");
-
-function activeMenu() {
-  let len = sections.length;
-  while (--len && window.scrollY + 97 < sections[len].offsetTop) {}
-  menuLi.forEach((a) => a.classList.remove("active"));
-  if (menuLi[len]) menuLi[len].classList.add("active");
-}
-activeMenu();
-window.addEventListener("scroll", activeMenu);
-
-// Sticky header
+// --- Sticky Navbar ---
 const header = document.querySelector("header");
 window.addEventListener("scroll", () => {
-  header.classList.toggle("Sticky", window.scrollY > 50);
+  header.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// Mobile menu
+// --- Mobile Menu Toggle ---
 const menuIcon = document.getElementById("menu-icon");
 const navlist = document.querySelector(".navlist");
 
-menuIcon.addEventListener("click", function () {
+menuIcon.addEventListener("click", () => {
   navlist.classList.toggle("open");
-  this.classList.toggle("bx-x");
+  menuIcon.classList.toggle("bx-x");
 });
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    entry.target.classList.toggle("show-items", entry.isIntersecting);
+// Close menu when clicking a link
+document.querySelectorAll('.navlist a').forEach(link => {
+  link.addEventListener('click', () => {
+    navlist.classList.remove('open');
+    menuIcon.classList.remove('bx-x');
   });
 });
 
-document.querySelectorAll(".scroll-scale").forEach((el) => observer.observe(el));
-document.querySelectorAll(".scroll-bottom").forEach((el) => observer.observe(el));
+// --- Typing Effect ---
+const textArray = ["Data Analyst", "BI Developer", "Problem Solver"];
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingElement = document.getElementById("typing-text");
 
-// Portfolio Image Slider Logic
-const sliders = {};
+function type() {
+  const currentText = textArray[textIndex];
+  
+  if (isDeleting) {
+    typingElement.textContent = currentText.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typingElement.textContent = currentText.substring(0, charIndex + 1);
+    charIndex++;
+  }
 
-function moveSlide(direction, sliderId) {
-  // Initialize slider state if it doesn't exist yet
-  if (sliders[sliderId] === undefined) {
-    sliders[sliderId] = 0;
+  let typingSpeed = isDeleting ? 50 : 100;
+
+  if (!isDeleting && charIndex === currentText.length) {
+    typingSpeed = 2000; // Pause at end
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    textIndex = (textIndex + 1) % textArray.length;
+    typingSpeed = 500; // Pause before next word
+  }
+
+  setTimeout(type, typingSpeed);
+}
+document.addEventListener("DOMContentLoaded", type);
+
+// --- Scroll Reveal Animation ---
+function reveal() {
+  var reveals = document.querySelectorAll(".reveal");
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    var elementVisible = 100; // point of reveal
+    
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    }
+  }
+}
+window.addEventListener("scroll", reveal);
+reveal(); // Trigger on load
+
+// --- Active Nav Link on Scroll ---
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.navlist a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (pageYOffset >= sectionTop - 150) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href').includes(current)) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// --- Project Image Slider ---
+let slideIndexes = { 'supply-slider': 0 };
+
+function updateSlider(sliderId) {
+  const slider = document.getElementById(sliderId);
+  const slides = slider.children;
+  const index = slideIndexes[sliderId];
+  
+  // Move slider
+  slider.style.transform = `translateX(-${index * 100}%)`;
+  
+  // Update indicators (dots)
+  const dotsContainer = document.getElementById(sliderId.replace('slider', 'indicators'));
+  if (dotsContainer) {
+    const dots = dotsContainer.children;
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].classList.remove('active');
+    }
+    dots[index].classList.add('active');
+  }
+}
+
+function changeSlide(direction, sliderId) {
+  const slider = document.getElementById(sliderId);
+  const totalSlides = slider.children.length;
+  
+  slideIndexes[sliderId] += direction;
+  
+  // Loop logic
+  if (slideIndexes[sliderId] >= totalSlides) {
+    slideIndexes[sliderId] = 0;
+  } else if (slideIndexes[sliderId] < 0) {
+    slideIndexes[sliderId] = totalSlides - 1;
   }
   
-  const wrapper = document.getElementById(sliderId);
-  const totalSlides = wrapper.children.length;
-  
-  // Calculate new slide index
-  sliders[sliderId] += direction;
-  
-  // Loop back to start or end
-  if (sliders[sliderId] >= totalSlides) {
-    sliders[sliderId] = 0;
-  } else if (sliders[sliderId] < 0) {
-    sliders[sliderId] = totalSlides - 1;
-  }
-  
-  // Apply CSS transform to slide images
-  const percentage = -(sliders[sliderId] * 100);
-  wrapper.style.transform = `translateX(${percentage}%)`;
+  updateSlider(sliderId);
+}
+
+function goToSlide(index, sliderId) {
+  slideIndexes[sliderId] = index;
+  updateSlider(sliderId);
 }
